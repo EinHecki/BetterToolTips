@@ -1,6 +1,11 @@
 {
-  "name": "Example Addon",
+  "name": "BetterToolTips",
+  "author": "HeckiYT",
+  "description": "This addon shows how many bees are in a beenest/beehive and which items are inside a shulkerbox.",
   "uuid": "%uuid%",
-  "mainClass": "com.example.addon.ExampleAddon",
-  "transformerClass": "com.example.addon.ExampleAddonTransformer"
+  "mainClass": "de.hecki.nbttooltips.NBTToolTips",
+  "transformerClass": "de.hecki.nbttooltips.NBTToolTipsTransformer",
+  "category": 1,
+  "version": 1,
+  "icon": "https://art.pixilart.com/eb0ff39f555d7fd.png"
 }
