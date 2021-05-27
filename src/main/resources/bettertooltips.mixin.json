@@ -2,7 +2,7 @@
   "required": true,
   "package": "de.hecki.nbttooltips.mixin",
   "compatibilityLevel": "JAVA_8",
-  "refmap": "example.refmap.json",
+  "refmap": "bettertooltips.refmap.json",
   "verbose": false,
   "injectors": {
     "defaultRequire": 1

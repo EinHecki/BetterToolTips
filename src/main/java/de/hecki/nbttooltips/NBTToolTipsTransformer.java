@@ -7,6 +7,6 @@ public class NBTToolTipsTransformer extends AddonTransformer {
 
     @Override
     public void registerTransformers() {
-        this.registerTransformer(TransformerType.VANILLA, "example.mixin.json");
+        this.registerTransformer(TransformerType.VANILLA, "bettertooltips.mixin.json");
     }
 }

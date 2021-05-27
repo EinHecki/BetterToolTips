@@ -2,6 +2,9 @@ package de.hecki.nbttooltips.mixin;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.platform.GlStateManager;
+import de.hecki.nbttooltips.NBTToolTips;
+import net.labymod.api.LabyModAddon;
+import net.labymod.main.LabyMod;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
@@ -55,8 +58,10 @@ public abstract class ShulkerBoxToolTipMixin extends Screen {
 
     @Inject(method = "render", at = @At("TAIL"), cancellable = true)
     private void onRender(MatrixStack matrixStack, int mouseX, int mouseY, float partialTicks, CallbackInfo ci) {
-        if (hoveredSlot == null || !Screen.hasShiftDown()) {
-            return;
+        if (!NBTToolTips.showShulkerToolTipInstant() || hoveredSlot == null) {
+            if (!Screen.hasShiftDown()) {
+                return;
+            }
         }
         final ItemStack item = hoveredSlot.getStack();
         if (item.getItem().getTranslationKey().contains("shulker_box")) {
