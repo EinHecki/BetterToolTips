@@ -58,7 +58,8 @@ public abstract class ShulkerBoxToolTipMixin extends Screen {
 
     @Inject(method = "render", at = @At("TAIL"), cancellable = true)
     private void onRender(MatrixStack matrixStack, int mouseX, int mouseY, float partialTicks, CallbackInfo ci) {
-        if (!NBTToolTips.showShulkerToolTipInstant() || hoveredSlot == null) {
+        if (hoveredSlot == null) return;
+        if (!NBTToolTips.showShulkerToolTipInstant()) {
             if (!Screen.hasShiftDown()) {
                 return;
             }

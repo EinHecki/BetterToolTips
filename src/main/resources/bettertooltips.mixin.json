@@ -8,9 +8,8 @@
     "defaultRequire": 1
   },
   "client": [
-    "ToolTipMixin"
-  ],
-  "mixins": [
+    "ToolTipMixin",
     "ShulkerBoxToolTipMixin"
-  ]
+  ],
+  "mixins": []
 }
