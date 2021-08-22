@@ -9,7 +9,8 @@
   },
   "client": [
     "ToolTipMixin",
-    "ShulkerBoxToolTipMixin"
+    "ShulkerBoxToolTipMixin",
+    "MapItemToolTip"
   ],
   "mixins": []
 }
