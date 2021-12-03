@@ -10,6 +10,7 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
 import net.minecraft.util.ResourceLocation;
@@ -25,6 +26,7 @@ import javax.annotation.Nullable;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Mixin(ContainerScreen.class)
 public abstract class ShulkerBoxToolTipMixin extends Screen {
@@ -65,9 +67,13 @@ public abstract class ShulkerBoxToolTipMixin extends Screen {
             }
         }
         final ItemStack item = hoveredSlot.getStack();
-        if (item.getItem().getTranslationKey().contains("shulker_box")) {
+        if (item.getItem().getTranslationKey().contains("shulker_box")
+                || item.getItem() == Items.BARREL
+                || item.getItem() == Items.CHEST
+                || item.getItem() == Items.TRAPPED_CHEST
+        ) {
             final int boxWidth = 8;
-            final ListNBT nbttaglist = (item.hasTag() ? item.getTag() : new CompoundNBT()).getCompound("BlockEntityTag").getList("Items", 10);
+            final ListNBT nbttaglist = (Objects.requireNonNull(item.hasTag() ? item.getTag() : new CompoundNBT())).getCompound("BlockEntityTag").getList("Items", 10);
             int slot = 0;
             final List<ItemStack> boxContents = new ArrayList<>();
             for (net.minecraft.nbt.INBT inbt : nbttaglist) {
@@ -91,8 +97,8 @@ public abstract class ShulkerBoxToolTipMixin extends Screen {
             final int centerToolTip = toolTipHeight / 2;
             final int lengthAbove = mouseY - 23 - centerToolTip;
             final int lengthBelow = mouseY - 10 + toolTipHeight - Minecraft.getInstance().getMainWindow().getScaledHeight() - centerToolTip;
-            final int drawX = mouseX + 4 - ((lengthOver > 0) ? lengthOver : 0);
-            final int drawY = mouseY - 12 - centerToolTip - ((lengthBelow > 0) ? lengthBelow : 0) - ((lengthAbove < 0) ? lengthAbove : 0);
+            final int drawX = mouseX + 4 - (Math.max(lengthOver, 0));
+            final int drawY = mouseY - 12 - centerToolTip - (Math.max(lengthBelow, 0)) - (Math.min(lengthAbove, 0));
             GlStateManager.translatef(0.0f, 0.0f, 777.0f);
             this.drawBar(matrixStack, drawX, drawY - 11, 0, boxWidth, 16);
             Minecraft.getInstance().fontRenderer.drawString(matrixStack, item.getDisplayName().getString(), (float) (drawX + 6), (float) (drawY - 6), Color.DARK_GRAY.getRGB());

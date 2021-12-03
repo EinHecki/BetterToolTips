@@ -27,7 +27,11 @@ public class ToolTipMixin {
         List<ITextComponent> data = cir.getReturnValue();
         ITextComponent component = StringTextComponent.EMPTY;
 
-        if (itemStack.getItem().getTranslationKey().contains("shulker_box")) {
+        if (itemStack.getItem().getTranslationKey().contains("shulker_box")
+                || itemStack.getItem() == Items.BARREL
+                || itemStack.getItem() == Items.CHEST
+                || itemStack.getItem() == Items.TRAPPED_CHEST
+        ) {
             if (!Screen.hasShiftDown()) {
                 data.add(new StringTextComponent(" "));
                 data.add(new StringTextComponent("Press ").setStyle(Style.EMPTY.setFormatting(TextFormatting.WHITE))
@@ -45,7 +49,6 @@ public class ToolTipMixin {
                     .setStyle(Style.EMPTY.setFormatting(TextFormatting.GRAY)))
                     .append(new StringTextComponent(itemStack.getTag().getCompound("BlockEntityTag").getList("Bees", 10).size() + ""))
                     .setStyle(Style.EMPTY.setFormatting(TextFormatting.YELLOW)));
-            return;
         }
     }
 }
