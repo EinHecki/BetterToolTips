@@ -6,6 +6,6 @@
   "mainClass": "de.hecki.nbttooltips.NBTToolTips",
   "transformerClass": "de.hecki.nbttooltips.NBTToolTipsTransformer",
   "category": 1,
-  "version": 1.2,
+  "version": 1.3,
   "icon": "https://i.ibb.co/98j2FKR/2021-05-27-17-47-34-Window2-dev.png"
 }
